@@ -1,4 +1,7 @@
 use std::io::{self, Write};
+use::std::f64;
+
+mod vec3;
 
 fn write_ppm(w: i32, h: i32, max_color: i32) {
     // function that loops through P3 color values from 0px to 256px and prints the value to screen
