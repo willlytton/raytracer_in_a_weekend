@@ -1,5 +1,8 @@
 use std::f64;
-use std::ops::{Add, Div, Mul, Neg, Sub};
+use std::ops::{Add, Div, Mul, Neg, Sub, AddAssign, MulAssign, DivAssign};
+
+
+pub mod color;
 
 #[derive(Debug)]
 pub struct Vec3 {
@@ -49,6 +52,15 @@ impl Add<Vec3> for Vec3 {
     }
 }
 
+impl AddAssign<Vec3> for Vec3 {
+    fn add_assign(&mut self, rhs: Self) { // &mut self borrows the struct and mutates its value
+        self.e[0] += rhs.e[0];
+        self.e[1] += rhs.e[1];
+        self.e[2] += rhs.e[2];
+    
+    }
+}
+
 impl Sub<Vec3> for Vec3 {
     type Output = Self;
     fn sub(self, rhs: Self) -> Self::Output {
@@ -75,6 +87,14 @@ impl Mul<Vec3> for Vec3 {
     }
 }
 
+impl MulAssign<Vec3> for Vec3 {
+    fn mul_assign(&mut self, rhs: Self) {
+        self.e[0] *= rhs.e[0];
+        self.e[1] *= rhs.e[1];
+        self.e[2] *= rhs.e[2];
+    }
+}
+
 impl Div<Vec3> for Vec3 {
     type Output = Self;
     fn div(self, rhs: Self) -> Self::Output {
@@ -85,6 +105,14 @@ impl Div<Vec3> for Vec3 {
                 self.e[2] / rhs.e[2],
             ],
         }
+    }
+}
+
+impl DivAssign<Vec3> for Vec3 {
+    fn div_assign(&mut self, rhs: Self) {
+        self.e[0] /= rhs.e[0];
+        self.e[1] /= rhs.e[1];
+        self.e[2] /= rhs.e[2];
     }
 }
 
